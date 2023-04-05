@@ -7,19 +7,16 @@ import { toast } from "react-toastify";
 
 function Books() {
     const [books, setBooks] = useState([]);
-    const [loader,setLoader] = useState(true)
     
      const navigate = useNavigate();
 
     useEffect(()=>{
-        setLoader(true)
      const fetchAllBooks = async()=>{
         try{
           const res = await axios.get("http://localhost:3000/books")
-          setLoader(false)
           setBooks(res.data)
         }catch(err){
-            setLoader(true)
+
             toast.error("Fetch" + err);
             console.log(err)
         }
@@ -44,7 +41,6 @@ function Books() {
 
   return (
     <div>
-        {loader ? (<h1>Loading ...</h1>):''}
         <h1 style={{marginBottom:'20px'}}>Online Book Store</h1>
         {books.length > 0 ?(<div className='books'>
             {books.map(book=>(
