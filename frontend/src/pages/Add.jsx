@@ -3,6 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import './style.css';
+import { toast } from "react-toastify";
 
 function Add() {
     const [books, setBooks] = useState({
@@ -21,8 +22,10 @@ function Add() {
       e.preventDefault();
       try{
         await axios.post("http://localhost:3000/books", books);
+        toast.success("You have added a book successfully");
         navigate('/');
       }catch(err){
+          toast.error("Error adding a book" + err);
           console.log(err);
       }
     };

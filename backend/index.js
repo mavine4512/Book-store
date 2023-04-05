@@ -66,10 +66,10 @@ app.put("/books/:id", (req, res) => {
 
   db.query(q, [...values, bookId], (error, data) => {
     if (error) return res.json(error);
-    return res.json("Booked has Updated Successfully.");
+    return res.json("Booked has Updated Successfully." + data);
   });
 });
 
-app.listen(3000, () => {
+app.listen(3001, () => {
   console.log("Connected to backend!");
 });

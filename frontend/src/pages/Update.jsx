@@ -5,16 +5,17 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import './style.css';
 
 function Update() {
-    const [books, setBooks] = useState({
-        title:"",
-        desc:"",
-        price: null,
-        cover:"",
-    });
-
+   
     const navigate = useNavigate();
     const location = useLocation();
     const data = location.state.data;
+
+     const [books, setBooks] = useState({
+        title:data.title,
+        desc:data.desc,
+        price:data.price,
+        cover:data.cover,
+    });
 
     const bookId = location.pathname.split('/')[2];
 
